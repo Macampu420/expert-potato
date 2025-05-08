@@ -16,16 +16,17 @@ app.use(
   })
 );
 
-app.use(express.json());
 
 app.all("/api/auth/*", (req, res, next) => {
   console.log("Request URL:", req.url);
   console.log("Request Method:", req.method);
   console.log("Request Headers:", req.headers);
   console.log("Request Body:", req.body);
-
+  
   next();
 }, toNodeHandler(auth));
+
+app.use(express.json());
 
 app.listen(port, () => {
   console.log(`Better Auth app listening on port ${port}`);
